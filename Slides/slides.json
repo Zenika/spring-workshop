@@ -1,0 +1,12 @@
+[
+  "00_agenda.md",
+  "01_clean_code.md",
+  "02_testing.md",
+  "03_maven.md",
+  "04_spring_core.md",
+  "05_spring_mvc.md",
+  "06_spring_security.md",
+  "07_spring_data.md",
+  "08_spring_batch.md",
+  "09_spring_boot.md"
+]

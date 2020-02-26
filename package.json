@@ -1,0 +1,21 @@
+{
+  "name": "formation-kotlin",
+  "description": "Formation Kotlin",
+  "version": "1.0.0",
+  "author": "Zenika",
+  "homepage": "https://training.zenika.com/formations/kotlin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zenika/formation-kotlin"
+  },
+  "private": true,
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "gulp": "^3.9.0",
+    "zenika-formation-framework": "^3.3.1"
+  },
+  "scripts": {
+    "start": "grunt",
+    "deploy": "zenika-formation-deploy"
+  }
+}
