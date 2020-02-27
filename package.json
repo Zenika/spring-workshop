@@ -1,12 +1,12 @@
 {
-  "name": "formation-kotlin",
-  "description": "Formation Kotlin",
+  "name": "spring-workshop",
+  "description": "Spring Workshop",
   "version": "1.0.0",
   "author": "Zenika",
-  "homepage": "https://training.zenika.com/formations/kotlin",
+  "homepage": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Zenika/formation-kotlin"
+    "url": "https://github.com/Zenika/formation-spring-workshop"
   },
   "private": true,
   "dependencies": {

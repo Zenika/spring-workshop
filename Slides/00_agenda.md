@@ -1,4 +1,4 @@
-# Java backends without worry
+# Spring Workshop <br>-<br>Java backends without worry
 
 <!-- .slide: class="page-title" -->
 
@@ -6,6 +6,7 @@
 ## Objectives
 
 Learning about:
+
 - Core best practises
 - Packaging and building a Java application
 - A practical approach to Spring

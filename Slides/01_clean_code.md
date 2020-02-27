@@ -1,4 +1,4 @@
-# Generalities
+# Clean code
 
 <!-- .slide: class="page-title" -->
 
@@ -47,8 +47,8 @@ Introduced by Uncle Bob in 2000 (Design Principles and Design Patterns)
 
 > "Software entities should be open for extension, but closed for modification."
 
-- Open for extension – This means that the behavior of the module can be extended. As the requirements of the application change, we are able to extend the module with new behaviors that satisfy those changes. In other words, we are able to change what the module does.
-- Closed for modification – Extending the behavior of a module does not result in changes to the source or binary code of the module. The binary executable version of the module, whether in a linkable library, a DLL, or a Java .jar, remains untouched.
+- *Open for extension* – This means that the behavior of the module can be extended. As the requirements of the application change, we are able to extend the module with new behaviors that satisfy those changes. In other words, we are able to change what the module does.
+- *Closed for modification* – Extending the behavior of a module does not result in changes to the source or binary code of the module. The binary executable version of the module, whether in a linkable library, a DLL, or a Java .jar, remains untouched.
 
 
 
@@ -169,6 +169,7 @@ public class Store {
 ```
 
 
+
 ## Dependency Injection
 
 By *constructor*
@@ -202,6 +203,7 @@ public class Store {
 ```
 
 
+
 ## Recommended reading
 
 - **Clean Code**: A Handbook of Agile Software Craftsmanship (Robert C. Martin)
@@ -210,6 +212,7 @@ public class Store {
 <figure>
     <img src="ressources/01_clean_code/books.png" alt="Recommended reading" />
 </figure>
+
 
 
 <!-- .slide: class="page-questions" -->
