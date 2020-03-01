@@ -52,6 +52,65 @@ MVC: *M*odel-*V*iew-*C*ontroller. This pattern is used to separate application's
 
 
 
+## Configuring Spring Web MVC
+
+- Create a Spring configuration with the *@EnableWebMvc* annotation
+
+```java
+@Configuration
+@EnableWebMvc
+public class WebConfig {
+    ...
+}
+```
+
+- Create a Spring context, and register the Spring MVC dispatcher servlet
+
+```java
+public class AppInitializer implements WebApplicationInitializer {
+    public void onStartup(ServletContext container) {
+        AnnotationConfigWebApplicationContext ctx = 
+            new AnnotationConfigWebApplicationContext();
+        ctx.register(PetshopConfig.class);
+        ctx.setServletContext(container);
+        ServletRegistration.Dynamic servlet = 
+            container.addServlet("dispatcher", new DispatcherServlet(ctx));
+        servlet.setLoadOnStartup(1);
+        servlet.addMapping("/");
+    }
+}
+```
+
+
+
+## Configuring Spring Web MVC
+
+You may provide an implemention of *WebMvcConfigurer* to customize Spring MVC behavior
+
+```java
+@Configuration
+@EnableWebMvc
+public class MyMvcConfig implements WebMvcConfigurer {
+
+    @Override
+    // Register JSON support for REST
+    public void configureMessageConverters(
+            List<HttpMessageConverter<?>> converters) {
+        converters.add(new MappingJackson2HttpMessageConverter());
+    }
+}
+
+```
+
+```xml
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+</dependency>
+```
+
+
+
 ## Spring MVC controllers
 
 - The controller is the entry point of your application: All user traffic is eventually redirected to a controller.
@@ -223,6 +282,10 @@ It's often desirable to return specific HTTP status codes
             return ResponseEntity.ok(pet);  // 200, pet as the body
     }
 ```
+
+
+
+<!-- .slide: class="page-tp7" -->
 
 
 

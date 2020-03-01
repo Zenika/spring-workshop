@@ -4,9 +4,7 @@ PDF
 dist
 .DS_Store
 **/build
-**/*.iml
 npm-debug.log
 **/*.class
-**/*.jar
 **/out/
 **/.gradle

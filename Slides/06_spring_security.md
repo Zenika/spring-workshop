@@ -30,14 +30,16 @@
   <groupId>org.springframework.security</groupId>
   <artifactId>spring-security-web</artifactId>
 </dependency>
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-config</artifactId>
+</dependency>
 ```
 
 - Many sub modules for more advanced security
   - *spring-security-openid*
   - *spring-security-oauth2*
   - *spring-security-kerberos*
-  - *spring-security-data*
-  - *spring-security-saml2*
   - And more !
 
 
@@ -61,6 +63,18 @@ Spring Security leverages one the traditionnal tools of Spring: *@Configuration*
 - The *WebSecurityConfigurerAdapter* is a good configuration adapter for many basic use cases and features several expansion points to customize according to your needs
   - The **configure(HttpSecurity http)** method provides a fluent interface to finely configure endpoint security
   - The **configure(WebSecurity web)** method allows you to whitelist specific endpoints on which security is entirely disabled (bypasses security filters)
+
+
+
+## Securing your application
+
+- To finalize Spring Security's initialization you need to register the *DelegatingFilterProxy* into the servlet configuration
+- An easy way to do it is simply to have an instance of *AbstractSecurityWebApplicationInitializer* in your classpath
+
+```java
+public class PetshopSecurityInitializer extends AbstractSecurityWebApplicationInitializer {
+}
+```
 
 
 
@@ -166,6 +180,10 @@ public String sell(Pet pet) {
 ```
 
 - These annotations can be located on a method or an entire class
+
+
+
+<!-- .slide: class="page-tp8" -->
 
 
 

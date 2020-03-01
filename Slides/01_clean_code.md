@@ -118,6 +118,10 @@ Industrialize your build: Use industry standard tools to manage the complete flo
 
 
 
+<!-- .slide: class="page-tp1" -->
+
+
+
 ## Inversion of control (IOC)
 
 Instantiating components yourself is bad !

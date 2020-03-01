@@ -391,6 +391,11 @@ Collection<User> findAllActiveUsersNative();
 
 
 
+<!-- .slide: class="page-tp9" -->
+
+
+
+
 ## Another Spring Data example
 
 - Spring Data covers many more data backends than JPA
@@ -484,7 +489,7 @@ public BookService {
 
 ## Enabling Spring Data Elasticsearch
 
-This is simply done by tagging a Spring configuration class with the *@EnableElasticsearchRepositories* annotation
+This is done by tagging a Spring configuration class with the *@EnableElasticsearchRepositories* annotation
 
 ```java
 @Configuration

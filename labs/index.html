@@ -1,0 +1,253 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Spring Workshop</title>
+    <link href="ressources/styleCahierExercice.css" rel="stylesheet"/>
+    <link href="ressources/code.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div style="height:24.7cm; position: relative; border: 1px solid black;">
+    <h1 style="position:absolute; top: 33%; width:100%; text-align: center;">Spring Workshop</h1>
+    <h1 style="position:absolute; top: 50%; width:100%; text-align: center;">Labs</h1>
+    <img src="ressources/logo-zenika-small.png" style="position: absolute; bottom: 20px; right: 20px; height: 150px;">
+</div>
+<div class="pb"></div>
+<div class="pb"></div>
+<h1>LAB 1</h1>
+<h2>Code cleanup</h2>
+<p>This code is horrible ! Time for a good refactoring</p>
+<ul>
+<li>Refactor code in accordance to SOLID principles
+<ul>
+<li>Separate layers : introduce model, data access, business logic</li>
+<li>Emilimate code redundency</li>
+<li>Be mindful of the packaging : different layers shouldn't reside in the same java package</li>
+</ul></li>
+</ul>
+<div class="pb"></div>
+<h1>LAB 2</h1>
+<h2>Adding tests</h2>
+<p>Our code certainly lacks code coverage.</p>
+<ul>
+<li>Add unit tests for the DAO layer</li>
+<li>Testing correct behavior is good, but be sure to test edge cases too !</li>
+<li>Maybe you can detect a few bugs and fix them...</li>
+</ul>
+<div class="pb"></div>
+<h1>LAB 3</h1>
+<h2>AssertJ</h2>
+<ul>
+<li>Switch to AssertJ</li>
+<li>Take advantage of AssertJ's fluent assertions</li>
+</ul>
+<div class="pb"></div>
+<h1>LAB 4</h1>
+<h2>Maven</h2>
+<p>Time to put some structure to our petshop</p>
+<ul>
+<li><p>Repackage the project to build with Maven</p>
+<ul>
+<li>Use the Maven artifacts for our dependencies: libraries in /lib are named <groupId><strong><artifactId></strong><version></li>
+<li>JUnit depends on Hamcrest, and is only used for tests. Set up your pom.xml accordingly</li>
+</ul></li>
+<li><p>Set up the project to use modules and submodules modules</p></li>
+</ul>
+<pre><code>.
+└── petshop-parent
+    ├── petshop-model
+    ├── petshop-persistence
+    ├── petshop-services
+    └── petshop-<span class="hljs-built_in">application</span>
+</code></pre>
+<div class="pb"></div>
+<h1>LAB 5</h1>
+<h2>Open API</h2>
+<p>Let's perform code generation with Maven</p>
+<ul>
+<li>Create a new Maven submodule: <em>petshop-api</em></li>
+<li>Use <em>petstore.yaml</em> from <em>resources/LAB5</em> to generate a server-side REST API
+<ul>
+<li>Use generation settings :</li>
+</ul></li>
+</ul>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">generatorName</span>&gt;</span>spring<span class="hljs-tag">&lt;/<span class="hljs-name">generatorName</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">library</span>&gt;</span>spring-mvc<span class="hljs-tag">&lt;/<span class="hljs-name">library</span>&gt;</span>
+</code></pre>
+<ul>
+<li>You will need the following dependencies to compile the generated code :</li>
+</ul>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.swagger<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>swagger-annotations<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.6.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.validation<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>validation-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.1.Final<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-webmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.2.3.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.openapitools<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-databind-nullable<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.2.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>javax.servlet-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.0.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>    
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span>
+</code></pre>
+<div class="pb"></div>
+<h1>LAB 6</h1>
+<h2>Spring Core</h2>
+<p>Let's turn our petshop application into a Spring application</p>
+<ul>
+<li>Create an annotation based Spring context</li>
+<li>Turn services and DAOs into Spring beans</li>
+<li>Externalize data file paths in a configuration file</li>
+<li>Put main logic in a @Component, retrieve it from context and execute it</li>
+</ul>
+<div class="pb"></div>
+<h1>LAB 7</h1>
+<h2>Spring MVC</h2>
+<p>Let's expose or services to the world !</p>
+<ul>
+<li>Turn the application into a Web application
+<ul>
+<li>Deploy it to a Tomcat server. <em>apache-tomcat-9.0.31.zip</em> is available in <em>resources/LAB7</em></li>
+<li>Create REST controllers to expose ower and pet data (as <em>/owners</em> and <em>/pets</em>)</li>
+<li>Test in browser</li>
+</ul></li>
+<li>Add functionality
+<ul>
+<li>Add <em>findOne(int id)</em> to your services</li>
+<li>Expose as <em>/owners/{id}</em> and <em>/pets/{id}</em></li>
+<li>Return 404 if not found</li>
+</ul></li>
+</ul>
+<div class="pb"></div>
+<h1>LAB 8</h1>
+<h2>Spring Security</h2>
+<p>Let's secure our application with Spring Security</p>
+<ul>
+<li>Set up security using an in-memory user credentials
+<ul>
+<li>&quot;/&quot; should be public</li>
+<li>&quot;/owners/...&quot; and &quot;/pets/...&quot; should be secured</li>
+</ul></li>
+</ul>
+<div class="pb"></div>
+<h1>LAB 9</h1>
+<h2>Spring Data JPA</h2>
+<p>Let's add real persistence to the Pet Shop !</p>
+<ul>
+<li>Configure Spring Data Jpa
+<ul>
+<li>We'll use a simple H2 database, available in <em>resources/LAB9</em></li>
+<li>You'll need the following dependencies</li>
+</ul></li>
+</ul>
+<pre><code class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.hibernate<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hibernate-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.4.12.Final<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.persistence<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>javax.persistence-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.h2database<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>h2<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.4.200<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</code></pre>
+<ul>
+<li>You'll need a configuration similar as this one to initialize JPA with H2:</li>
+</ul>
+<pre><code class="language-java">    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> DataSource <span class="hljs-title">dataSource</span><span class="hljs-params">()</span> </span>{
+        JdbcDataSource ds = <span class="hljs-keyword">new</span> JdbcDataSource();
+        <span class="hljs-comment">// Modify with the directory where you put "h2.mv.db"</span>
+        ds.setURL(<span class="hljs-string">"jdbc:h2:c:/temp/h2"</span>);  
+        <span class="hljs-keyword">return</span> ds;
+    }
+
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> LocalContainerEntityManagerFactoryBean <span class="hljs-title">entityManagerFactory</span><span class="hljs-params">(DataSource dataSource)</span> </span>{
+        HibernateJpaVendorAdapter jpaVendorAdapter = <span class="hljs-keyword">new</span> HibernateJpaVendorAdapter();
+        jpaVendorAdapter.setDatabase(Database.H2);
+        jpaVendorAdapter.setGenerateDdl(<span class="hljs-keyword">true</span>);
+        LocalContainerEntityManagerFactoryBean bean = <span class="hljs-keyword">new</span> LocalContainerEntityManagerFactoryBean();
+        bean.setDataSource(dataSource);
+        bean.setJpaVendorAdapter(jpaVendorAdapter);
+        bean.setPackagesToScan(Entity<span class="hljs-class">.<span class="hljs-keyword">class</span>.<span class="hljs-title">getPackage</span>().<span class="hljs-title">getName</span>())</span>;
+        <span class="hljs-keyword">return</span> bean;
+    }
+
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> JpaTransactionManager <span class="hljs-title">transactionManager</span><span class="hljs-params">(EntityManagerFactory emf)</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> JpaTransactionManager(emf);
+    }
+</code></pre>
+<ul>
+<li>Replace all our hand-crafted repositories with Spring Data Jpa repositories</li>
+<li>Update all impacted code accordingly
+<ul>
+<li>You won't need the csv files anymore</li>
+<li>Remove the DAO unit tests. Spring Data is trustworthy</li>
+</ul></li>
+</ul>
+<div class="pb"></div>
+<h1>LAB 10</h1>
+<h2>Spring Batch</h2>
+<p>Let's create a Spring batch process</p>
+<ul>
+<li>Create a new child module named <em>petshop-batch</em></li>
+<li>Create a Spring Batch which does the following:
+<ul>
+<li>Read file <em>resources/LAB10/pets.csv</em> and produce a String[]
+<ul>
+<li>Use <em>org.springframework.batch.item.file.FlatFileItemReader</em></li>
+<li>Be sure to set its <em>Resource</em> and <em>LineMapper</em></li>
+</ul></li>
+<li>Use an <em>ItemProcessor</em> to turn each record into a <em>PetEntity</em></li>
+<li>Write an <em>ItemWriter</em> that leverages <em>PetDao</em> to save the records into the database</li>
+</ul></li>
+<li>Check the result thru your <em>/pets</em> REST endpoint</li>
+</ul>
+<div class="pb"></div>
+<h1>LAB 11</h1>
+<h2>Spring Boot</h2>
+<p>The final test !</p>
+<p>Convert your application into a Spring Boot app.</p>
+<ul>
+<li><p>Use starters</p>
+<ul>
+<li><em>spring-boot-starter-data-jpa</em></li>
+<li><em>spring-boot-starter-web</em></li>
+<li><em>spring-boot-starter-security</em></li>
+</ul></li>
+<li><p>You will need to use the following Spring Boot configuration to interface with a H2 datasource</p></li>
+</ul>
+<pre><code class="language-yaml"><span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">datasource:</span>
+    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:h2:c:/temp/h2</span>
+    <span class="hljs-attr">username:</span> <span class="hljs-string">'sa'</span>
+    <span class="hljs-attr">driverClassName:</span> <span class="hljs-string">org.h2.Driver</span>
+  <span class="hljs-attr">jpa:</span>
+    <span class="hljs-attr">database-platform:</span> <span class="hljs-string">org.hibernate.dialect.H2Dialect</span>
+    <span class="hljs-attr">hibernate.ddl-auto:</span> <span class="hljs-string">none</span>
+</code></pre>
+
+  </body>
+</html>
+      

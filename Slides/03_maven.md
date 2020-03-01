@@ -83,7 +83,7 @@ A simple pom.xml:
   <!-- unique project identity -->
   <groupId>com.zenika.workshop</groupId>
   <artifactId>my-app</artifactId>
-  <version>0.0.1.SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
   <!-- library dependencies -->
   <dependencies>
     <dependency>
@@ -97,6 +97,17 @@ A simple pom.xml:
   </dependencies>
 </project>
 ```
+
+
+
+## Scopes
+
+- *compile* Default scope. Those dependencies are propagated to dependent projects
+- *provided* You expect the JDK or container to provide the dependency at runtime
+- *runtime* This scope indicates that the dependency is not required for compilation, but is for execution
+- *test* This scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases
+- *import* Includes the dependency management section of another artifact
+- *system* Similar to *provided*
 
 
 
@@ -363,6 +374,10 @@ A special lifecycle: *clean*
 
 
 
+<!-- .slide: class="page-tp4" -->
+
+
+
 ## Maven plugins 
 
 Maven plugins are the elementary brick of the build process
@@ -610,6 +625,10 @@ components:
     </configuration>
 </plugin>
 ```
+
+
+
+<!-- .slide: class="page-tp5" -->
 
 
 

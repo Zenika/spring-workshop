@@ -183,6 +183,10 @@ class MyFirstTest {
 
 
 
+<!-- .slide: class="page-tp2" -->
+
+
+
 ## AssertJ
 
 - Better *assertions* for JUnit
@@ -205,6 +209,10 @@ assertThat(fellowshipOfTheRing).hasSize(9)
                                .contains(frodo, sam)
                                .doesNotContain(sauron);
 ```
+
+
+
+<!-- .slide: class="page-tp3" -->
 
 
 

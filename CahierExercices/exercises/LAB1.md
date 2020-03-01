@@ -1,24 +1,13 @@
 <div class="pb"></div>
 
-# LAB 1 - Hello World
+# LAB 1
 
-## Create the HelloWorld program
+## Code cleanup
 
-- Create a directory named helloworld for your source
-- Open the directory
-- Create the file HelloWorld.kt
-- Open this file with an editor
-- Write the code of the HelloWorld function (available on slides)
-- Save the file
+This code is horrible ! Time for a good refactoring
 
-## Compile the program
-
-- Use kotlinc to compile the program
-
-## Execute the program
-
-- Open a terminal to execute the program
-
-## Enhance the program
-
-- Now we want to read an argument from the command line. The program must display "Hello ${args[0]}"  
+- Refactor code in accordance to SOLID principles
+  - Separate layers : introduce model, data access, business logic
+  - Emilimate code redundency
+  - Be mindful of the packaging : different layers shouldn't reside in the same java package
+  
