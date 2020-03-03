@@ -50,7 +50,7 @@
   - *Authentication*: **Who** is accessing the resource ?
   - *Authorization*: **What** is he allowed to do ?
 - For instance, your user information could be handled by an LDAP server
-  -  Your used is *authenticated* if he has provided the right user/password
+  -  Your user is *authenticated* if he has provided the right user/password
   -  His *authorizations* (or *habilitations*) are determined thru his LDAP groups
 
 
@@ -107,6 +107,7 @@ This component is used by *CustomAuthenticationManager* to retrieve user informa
   - *InMemoryUserDetailsManager*
   - *JdbcUserDetailsManager*
   - ...
+
 
 
 ## A basic security configuration

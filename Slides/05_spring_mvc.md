@@ -19,6 +19,7 @@
 - [Spring Boot](#/9)
 
 
+
 ## MVC model
 
 MVC: *M*odel-*V*iew-*C*ontroller. This pattern is used to separate application's concerns.
@@ -153,6 +154,7 @@ public class MyRestController {
 ```
 
 
+
 ## Spring MVC controllers: binding traffic
 
 - To bind your web traffic to your controller, you need to add annotations
@@ -206,7 +208,7 @@ public class PetController {
     private PetService petService;
 
     // Handling http://yourserver/pets/123
-    @GetMapping("/pets/{id}")
+    @GetMapping("/{id}")
     public Pet getPet(@PathVariable("id") int id) {
         return petService.findById(id);
     }
@@ -228,12 +230,13 @@ public class PetController {
     private PetService petService;
 
     // Handling http://yourserver/pets?id=123
-    @GetMapping("/pets")
+    @GetMapping
     public Pet getPet(@RequestParam("id") int id) {
         return petService.findById(id);
     }
 }
 ```
+
 
 
 ## Spring MVC controllers: retrieving data from request headers
@@ -251,7 +254,7 @@ public class PetController {
     private PetService petService;
 
     // log user agent
-    @GetMapping("/all")
+    @GetMapping
     public Pet getAllPets(@RequestHeader("User-Agent") String userAgent) {
         log.info("User agent: {}", userAgent);
         return petService.findAll();
@@ -388,6 +391,7 @@ public class PetController {
 ```
 
 
+
 ## RestTemplate
 
 - A handy HTTP client: *RestTemplate*
@@ -409,7 +413,8 @@ ResponseEntity<String> response = restTemplate.postForEntity(url,
     new HttpEntity<>(map, headers) , 
     String.class);
 ```
-  
+
+
 
 
 <!-- .slide: class="page-questions" -->

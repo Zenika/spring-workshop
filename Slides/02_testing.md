@@ -212,10 +212,6 @@ assertThat(fellowshipOfTheRing).hasSize(9)
 
 
 
-<!-- .slide: class="page-tp3" -->
-
-
-
 ## Mockito
 
 - Framework to use "mock" objects
@@ -225,6 +221,7 @@ assertThat(fellowshipOfTheRing).hasSize(9)
 - Inject them into the tested instance with **@InjectMocks**
 - Program your mocks behavior with the Mockito fluent API: **when(...).then(...)**
 - Check the mocks were called as expected with **verify**
+
 
 
 ## Mockito
@@ -249,6 +246,11 @@ public Class MyServiceTest {
     }
 }
 ```
+
+
+
+<!-- .slide: class="page-tp3" -->
+
 
 
 <!-- .slide: class="page-questions" -->

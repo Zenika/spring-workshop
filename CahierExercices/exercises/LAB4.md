@@ -7,7 +7,7 @@
 Time to put some structure to our petshop
 
 - Repackage the project to build with Maven
-  - Use the Maven artifacts for our dependencies: libraries in /lib are named <groupId>__<artifactId>__<version>
+  - Use the Maven artifacts for our dependencies: libraries in /lib are named *groupId__artifactId__version*
   - JUnit depends on Hamcrest, and is only used for tests. Set up your pom.xml accordingly
 
 - Set up the project to use modules and submodules modules 

@@ -30,7 +30,7 @@ A framework create robust batch processes, taking care of the boilerplate code f
             <artifactId>spring-batch-core</artifactId>
         </dependency>
 ```
-    
+
 
 
 ## Spring Batch
@@ -177,6 +177,7 @@ public class CustomerReportJobConfig {
 }
 
 ```
+
 
 
 ## Job execution

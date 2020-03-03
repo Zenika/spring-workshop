@@ -205,7 +205,7 @@ public interface PetsCustomBehavior {
 }
 
 @Repository
-public class PetsCustomBehaviorImpl {
+public class PetsCustomBehaviorImpl implements PetsCustomBehavior {
     public List<Pet> findAllSomething() { ... }
 }
 
@@ -458,6 +458,7 @@ public interface ElasticsearchRepository<T, ID> extends ElasticsearchCrudReposit
 ```
 
 
+
 ## Spring Data Elasticsearch repositories
 
 Just like Spring Data Jpa or any other Spring Data module, you get query methods with conventions over configuration
@@ -498,6 +499,7 @@ public class MyConfig {
 
 }
 ```
+
 
 
 <!-- .slide: class="page-questions" -->

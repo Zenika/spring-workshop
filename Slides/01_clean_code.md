@@ -102,6 +102,10 @@ Split your basecode according to the technical role of your classes
 
 
 
+<!-- .slide: class="page-tp1" -->
+
+
+
 ## Packaging your application
 
 Industrialize your build: Use industry standard tools to manage the complete flow of your build:
@@ -115,10 +119,6 @@ Industrialize your build: Use industry standard tools to manage the complete flo
 <figure>
     <img src="ressources/01_clean_code/maven_gradle.png" alt="Layered architecture" />
 </figure>
-
-
-
-<!-- .slide: class="page-tp1" -->
 
 
 
