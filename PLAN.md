@@ -1,29 +1,38 @@
-Domaine: [Java & Architecture, Craftsmanship, IoT & Mobilité]
+Domaine: [Java & Architecture, Craftsmanship]
 
 Sous-domaine: Langages
 
-# Kotlin
+# Spring Workshop - Les backends Java sans soucis
 
-## Apprendre à développer des applications en Kotlin
+## Apprendre à développer un backend Java
 
-Durée: 2j
+Durée: 3j
 
 Prix: ?€
 
 ## Présentation
 
-Kotlin est le langage de programmation créé par JetBrains en 2011. Il a la particularité de pouvoir être compilé pour la JVM, transpilé vers du JavaScript et même plus avec le compilateur LLVM. L'objectif du langage est d'être compatible avec l'existant, de permettre l'utilisation simple des paradigmes de la programmation fonctionnelle, de simplifier l'écriture du code et libérer les développeurs des erreurs les plus communes.
+Pour l'élaboration de backends REST modernes, l'écosystème Java demeure un incontournable.
 
-Kotlin gagne en popularité depuis la sortie officielle de sa version 1.0. Petit à petit, il devient la référence à la fois dans le monde du mobile (Android), du backend (Spring) et des outils (Gradle).
+En particulier, le framework Spring fournit une bibliothèque de fonctionnalités couvrant l'ensemble des besoins techniques typiquement mis en oeuvre pour la mise en place de backends robustes, et offre une aide substancielle aux développeurs en termes de productivité et d'assistance à la production de code standardisé et conforme à l'état de l'art.
 
-Dans cette formation nous allons introduire les concepts clé du langage qui vous permettront de développer votre prochain projet Java, JavaScript ou Android en Kotlin.
+Dans cette formation nous allons introduire les bonnes pratiques fondamentalles à l'élaboration d'un backend de qualité ainsi qu'un tour d'horizon du framework Spring.
+
+Le stagiaire découvrira Spring tout au long du workshop un backend complet en transformant une unique classe rudimentaire en un backend REST complet.
 
 ## Objectifs
 
-- Apprendre les bases du langage
-- Découverte de la librairie standard
-- Prise en main des différents outils disponibles
-- Aperçu des différents contextes d'utilisation (Android, Backend, Javascript)
+- Un tour d'horizon sur les bonnes pratiques de l'ingéniérie Java
+  - Principes SOLID
+  - Les tests
+  - Maven
+- Découverte de Spring
+  - Fondamentaux (Spring Code)
+  - REST à travers Spring MVC
+  - Sécurisation des backends (Spring Security)
+  - Persistence via Spring Data illustrée à travers Spring Data JPA et Spring Data ElasticSearch
+  - Spring Batch
+  - Spring Boot
 
 ## Pédagogie
 
@@ -35,42 +44,58 @@ Développeurs
 
 ## Pré-requis
 
-Connaître les bases de la programmation.
+Connaître le langage Java.
 
 ## Programme
 
-1. Premiers pas
-  - Présentation du langage
-  - Installation
-  - Premier programme
-  - En ligne de commande (REPL)
-
-2. Syntaxe de base
-  - Variables (var, val, const, immutabilité, null safety)
-  - Expressions (if, when, while => statements)
-  - Packages
-  - Types
-  - Normes d'écriture (coding conventions)
-
-3. Classes et objets
-  - Classes, interfaces et héritage
-  - Classes de données (Data Class)
-  - Extensions
-  - Génériques
-  - Délégation
-
-4. Fonctions et Lambdas
-  - Fonctions
-  - De-structuring
-  - Surcharge d'opérateurs
-  - Lambdas
-  - Higher-Order Function
-  - Inline functions
-  - Coroutines
-
-5. Librairie standard et outillage
-  - Collection
-  - Compilateurs
-  - Intéractions avec Java
-  - Intéractions avec JavaScript
-  
+1. Clean code
+   - Principes SOLID
+   - Packaging d'application
+   - Inversion de controle (IOC)
+2. Testing
+   - Valeur
+   - Différents types de tests
+   - Frameworks de test: jUnit, AssertJ, Mockito
+3. Maven
+  - Grands principes (artifacts, scopes, organisation, pom.xml)
+  - Cycle de vie
+  - Plugins
+  - Génération de code, illustrée avec OpenAPI
+4. Spring Core
+  - Injection de dépendances
+  - Injection de propriétés
+  - Classes de configurations
+  - Stéréotypes
+  - Scopes
+5. Spring MVC
+  - Modèle MVC
+  - Mise en oeuvre
+  - Controlleurs
+  - REST avec Spring MVC (binding, gestion des erreurs)
+6. Spring Security
+  - Mise en oeuvre
+  - Authentification / autorisation
+  - Composants techniques essentiels (AuthenticationManager / UserDetailsService)
+  - Sécurisation du traffic
+  - Sécurisation du code
+7. Spring Data
+  - Vision des différents modules Spring Data disponibles
+  - Notion de Repository
+  - Fonctionnalités auto-générées
+  - Query methods
+  - Repositories composites
+  - Focus sur Spring Data JPA
+  - Exemple d'un autre module Spring Data avec Spring Data Elasticsearch
+8. Spring Batch
+   - Notions de Jobs and Steps
+   - Steps Tasklet et Steps "chunks" 
+   - ItemReader, ItemProcessor, ItemWriter
+   - Création d'un job par classe de configuration
+   - Exécution d'un job
+9. Spring Boot
+   - Spring Initilizr
+   - Auto configuration
+   - Configuration via application.yaml
+   - Serveur web embarqué
+   - Starter modules (et comment créer le sien)
+   - Actuator

@@ -5,11 +5,6 @@ Documentation du [framework](https://github.com/Zenika/zenika-formation-framewor
 En cas de problème avec le modèle, ouvrir une issue sur [le framework](https://github.com/Zenika/zenika-formation-framework).
 
 
-## Supports PDF et Live
-
-Les supports peuvent être obtenus à cette adresse : https://formation-kotlin-dot-zen-formations.appspot.com/ [![CircleCI](https://circleci.com/gh/Zenika/formation-kotlin/tree/master.svg?style=svg&&circle-token=1d57996d4d20b7c3e4f084efec9dd75228ce8a1c)](https://circleci.com/gh/Zenika/formation-kotlin/tree/master)
-
-
 ## Organisation
 
 ``` shell
