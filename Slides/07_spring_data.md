@@ -412,7 +412,7 @@ Collection<User> findAllActiveUsersNative();
 
 ## Spring Data Elasticsearch entities
 
-- Just like JPA, you have a set of annotations to set on your annotations
+- Just like JPA, you have a set of annotations to enhance your model
 - *@Document* is used to define the Elasticsearch index holding the data
 
 ```java
@@ -461,7 +461,7 @@ public interface ElasticsearchRepository<T, ID> extends ElasticsearchCrudReposit
 
 ## Spring Data Elasticsearch repositories
 
-Just like Spring Data Jpa or any other Spring Data module, you get query methods with conventions over configuration
+Just like Spring Data JPA or any other Spring Data module, you get query methods with conventions over configuration
 
 ```java
 @Repository

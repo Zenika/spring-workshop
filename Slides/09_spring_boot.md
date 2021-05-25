@@ -24,17 +24,16 @@
 
 - Spring Boot is Spring's convention-over-configuration solution for creating stand-alone, production-grade Spring-based Applications that you can "just run".
 - Helps you get started on your Spring application fast and easy
-- Features:
-    - Create *stand-alone* Spring applications
-    - *Embed Tomcat* or Jetty directly (no need to deploy WAR files)
-    - Provide '*starter*' projects to simplify your configuration
+- Features include:
+    - Creating *stand-alone* Spring applications
+    - *Embed application server* (eg: Tomcat or Jetty) directly: no need to deploy WAR files
+    - '*starter*' projects to simplify your configuration
     - *Automatically configure* Spring whenever possible
     - Provide production-ready features such as *metrics*, *health checks* and *externalized configuration*
-    - No code generation, no requirement for XML configuration
 
 
 
-## Spring Boot: A REST application in 10 lines of code
+## Spring Boot: A REST application in 11 lines of code
 ```java
 @SpringBootApplication
 @RestController
@@ -63,7 +62,7 @@ The *@SpringBootApplication* triggers the automatic configuration of the Spring 
 
 
 
-## Spring Initilizr: Your project skeleton in a couple clicks
+## Spring Initializr: Your project skeleton in a couple clicks
 
 A website to help you generate your project skeleton: https://start.spring.io
 
@@ -79,7 +78,7 @@ The *spring-boot-maven-plugin* Maven plugin packages your entire application in 
 
 - Contains your application and all its dependencies
 - Easy to deploy, easy to run
-- Can embed a shell script for the jar file to be executable !
+- Can embed a shell script into the jar: makes the jar file executable (OS-dependent) !
 
 ```xml
 <plugin>
@@ -170,7 +169,7 @@ Using a starter module is easy:
 
 - Just include it in your pom.xml
 - Spring Boot will autodetect and autoconfigure it on startup
-  - Starters set up reasonable defaults and are ready-to-good
+  - Starters set up reasonable defaults and are ready-to-go
   - Customization is done thru properties in your configuration file or thru *@Bean* files you can provide
 
 ```xml

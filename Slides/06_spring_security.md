@@ -46,7 +46,7 @@
 
 ## Authentification and authorization.
 
-- Spring Security helps you deal with both use authentication and habilitation
+- Spring Security helps you deal with both authentication and authorization
   - *Authentication*: **Who** is accessing the resource ?
   - *Authorization*: **What** is he allowed to do ?
 - For instance, your user information could be handled by an LDAP server
@@ -57,60 +57,16 @@
 
 ## Securing your application
 
-Spring Security leverages one the traditionnal tools of Spring: *@Configuration* and provides a variety of Adapter classes to help you set up your security
+Spring Security leverages the traditional *@Configuration* pattern and provides a variety of Adapter classes to help you set up your security
 
-- *@EnableWebSecurity* enable Spring Security’s web security support and provide the Spring MVC integration
+- *@EnableWebSecurity*: enable Spring Security’s web security support and provide the Spring MVC integration
 - The *WebSecurityConfigurerAdapter* is a good configuration adapter for many basic use cases and features several expansion points to customize according to your needs
   - The **configure(HttpSecurity http)** method provides a fluent interface to finely configure endpoint security
   - The **configure(WebSecurity web)** method allows you to whitelist specific endpoints on which security is entirely disabled (bypasses security filters)
 
 
 
-## Securing your application
-
-- To finalize Spring Security's initialization you need to register the *DelegatingFilterProxy* into the servlet configuration
-- An easy way to do it is simply to have an instance of *AbstractSecurityWebApplicationInitializer* in your classpath
-
-```java
-public class PetshopSecurityInitializer extends AbstractSecurityWebApplicationInitializer {
-}
-```
-
-
-
-## AuthenticationManager
-
-The core of the security is delegated to an AuthenticationManager
-
-- A very simple interface :
-```java
-	Authentication authenticate(Authentication authentication)
-			throws AuthenticationException;
-```
-- Many different implementations
-  - *CustomAuthenticationManager* (default implementation, delegates to a *UserDetailsService*)
-  - *OAuth2AuthenticationManager*
-  - ...
-
-
-
-## UserDetailsService
-
-This component is used by *CustomAuthenticationManager* to retrieve user information
-
-- A simple interface :
-```java
-  UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
-```
-- UserDetails holds various user information, among them his authorities
-- Several implementations provided by Spring
-  - *InMemoryUserDetailsManager*
-  - *JdbcUserDetailsManager*
-  - ...
-
-
-
-## A basic security configuration
+## Sample security configuration
 
 ```java
 @Configuration
@@ -132,15 +88,71 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.logout()
 				.permitAll();        // logout url is public too
 	}
-    ...
+}
 ```
 
 
 
-## A basic security configuration
+## Securing your application
+
+- To finalize Spring Security's initialization you need to register the *DelegatingFilterProxy* into the servlet configuration
+- An easy way to do it is simply to have an instance of *AbstractSecurityWebApplicationInitializer* in your classpath
 
 ```java
-    ...
+public class PetshopSecurityInitializer 
+   extends AbstractSecurityWebApplicationInitializer {
+
+}
+```
+
+
+
+## AuthenticationManager
+
+The core of the security is delegated to an AuthenticationManager
+
+- A very simple interface :
+```java
+	Authentication authenticate(Authentication authentication)
+	  throws AuthenticationException;
+```
+- Many different implementations
+  - *CustomAuthenticationManager* (default implementation, delegates to a *UserDetailsService*)
+  - *OAuth2AuthenticationManager*
+  - ...
+
+
+
+## UserDetailsService
+
+This component is used by *CustomAuthenticationManager* to retrieve user information
+
+- A simple interface :
+```java
+  UserDetails loadUserByUsername(String username) 
+    throws UsernameNotFoundException;
+```
+- UserDetails holds various user information, among them his authorities
+- Several implementations provided by Spring
+  - *InMemoryUserDetailsManager*
+  - *JdbcUserDetailsManager*
+  - ...
+
+
+
+## Sample security configuration (continued)
+
+```java
+@Configuration
+@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+    @Override
+    // Let's protect our endpoints
+	protected void configure(HttpSecurity http) throws Exception {
+    ...// Same as before
+	}
+
     // We're using the default CustomAuthenticationManager 
     //  and just need to specify an instance of UserDetailsService
 	@Bean
@@ -162,7 +174,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 ## Securing services
 
-- Securing HTTP endpoint may not be sufficient in some cases
+- Securing HTTP endpoints may not be sufficient in some cases
 - Spring Security provides with various annotations to secure code
   - *@Secured*
 ```java

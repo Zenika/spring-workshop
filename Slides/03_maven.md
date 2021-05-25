@@ -24,10 +24,11 @@
 
 - A build management tool on steroids
 - Brings standardisation and structure to your projects
-- Handles dependencies hell (conflicts, transitivities)
+- Handles dependencies hell (version conflicts, transitivities, scopes)
 - Open source (Apache Software Foundation)
 - Very mature (Initial release in 2004, still updated)
 - A rich ecosystem with plugins for any task (reporting, code generation, deployment...)
+- Excellent integration into your IDE and you Continuous Integration platform
 
 
 
@@ -61,11 +62,13 @@ OS name: "mac os x", version: "10.15.3", arch: "x86_64", family: "mac"
 
 ## Your project manifest: pom.xml
 
-The heart of a maven project is the *pom.xml* file. Located at the root of your arborescence, it allows your to specify:
+The heart of a Maven project is the *pom.xml* file. 
 
-- The *groupId*, *artifactId*, *version* of your project
+Located at the root of your arborescence, it allows your to specify:
+
+- The *groupId*, *artifactId*, *version* for your project
 - The packaging type (pom, jar, war, ear...)
-- Inheritance information from another maven project
+- Eventual inheritance from another Maven project (called the *parent* project)
 - The dependencies used
 - The description of the build process (by default, just compile and create a binary)
 
@@ -77,12 +80,15 @@ A simple pom.xml:
 
 ```xml
 <project>
-  <!-- model version is always 4.0.0 for Maven 2.x POMs -->
+
+  <!-- model version is always 4.0.0 for modern projects (>= Maven 2.x) -->
   <modelVersion>4.0.0</modelVersion>
+
   <!-- unique project identity -->
   <groupId>com.zenika.workshop</groupId>
   <artifactId>my-app</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+
   <!-- library dependencies -->
   <dependencies>
     <dependency>
@@ -90,10 +96,11 @@ A simple pom.xml:
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
-      <!-- this dependency is only used for running and compiling tests -->
+      <!-- this dependency is only used for compiling and running tests -->
       <scope>test</scope>
     </dependency>
   </dependencies>
+
 </project>
 ```
 
@@ -101,12 +108,12 @@ A simple pom.xml:
 
 ## Scopes
 
-- *compile* Default scope. Those dependencies are propagated to dependent projects
-- *provided* You expect the JDK or container to provide the dependency at runtime
+- *compile* Default scope (used if scope is unspecified). Those dependencies are propagated to dependent projects
+- *provided* This dependency is needed for compilation, but you expect the runtime environment to provide these binaries at runtime
 - *runtime* This scope indicates that the dependency is not required for compilation, but is for execution
 - *test* This scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases
 - *import* Includes the dependency management section of another artifact
-- *system* Similar to *provided*
+- *system* Similar to *provided*. Rarely ever used
 
 
 
@@ -135,8 +142,8 @@ A simple pom.xml:
 
 - Structuring your application in modules and submodules promotes reuse and decoupling
 - Maven introduces the notion of modules and submodules (aka parent projects / child projects)
-- Parent projects are typically packaged as *pom* and mutualize dependency management and build configuration
-- Child projects are stored as subfolders of the parent project
+- Parent projects are packaged as *pom* and mutualize dependency management and build configuration information
+- Child projects may be stored as subfolders of the parent project
 
 ```
 
@@ -185,7 +192,6 @@ Mutualize your dependency definitions in the parent
 - Versions
 - Scopes
 - Exclusions
-- Configurations
 
 ```xml
 <dependencyManagement>
@@ -237,7 +243,7 @@ Be sure to inherit the parent pom in child modules !
 ```xml
 <project>
     <modelVersion>4.0.0</modelVersion>
-    <!-- coordonates of the parent pom -->
+    <!-- coordinates for the parent pom -->
     <parent>
         <groupId>com.zenika.workshop</groupId>
         <artifactId>my-app</artifactId>
@@ -263,40 +269,13 @@ Be sure to inherit the parent pom in child modules !
 
 - A Maven build follows a precise succession of steps: the *lifecycle*
 - These steps are called *phases*
-- Each plugin is configured to trigger on a specific phase, either implicitely (defaut configuration) or explicitely :
-
-```xml
-<build>
-    <plugins>
-        <plugin>
-            <artifactId>my-plugin</artifactId>
-            <groupId>com.zenika</groupId>
-            <version>1.0.0</version>
-            <executions>
-                <execution>
-                    <id>my-exec</id>
-                    <!-- this plugin will execute in the compile phase -->
-                    <phase>compile</phase>
-                    ...
-                </execution>
-            </configuration>
-        </plugin>
-    </plugins>
-<build>
-```
-
-
-
-## Maven lifecycle: Main phases
-
-The main phases are: 
-
-- *validate* - Validate the project is structurally correct
-- *compile* - Compile the source code
-- *test* - Run tests
-- *package* - Take the compiled code and package it in its distributable format, such as a JAR.
-- *install* - Install the package into the local maven repository
-- *deploy* - Done in the CI environment, copies the final package to the remote repository (Nexus, Artifactory...)
+- The main phases are: 
+  - *validate* - Validate the project is structurally correct
+  - *compile* - Compile the source code
+  - *test* - Run tests
+  - *package* - Take the compiled code and package it in its distributable format, such as a JAR.
+  - *install* - Install the package into the local Maven repository
+  - *deploy* - Copies the final package to the remote repository (Nexus, Artifactory...). Typically done in the CI environment only
 
 
 
@@ -349,9 +328,15 @@ Useful for your custom plugins
 
 A special lifecycle: *clean*
 
-- Removes compilated classes, packaged binaries and more
-- When all fails, a nice "clean" may help !
-- Just run *mvn clean*
+- Cleans up your workspace by removing compilated classes, packaged binaries and more
+- When all fails, a nice "clean" may help ! Just run *mvn clean*
+- May be used in addition of phases of the regular cycle to ensure a smooth run: *mvn clean compile*
+
+
+
+## Maven lifecycle: Clean
+
+*mvn clean*
 
 ```xml
 > mvn clean                                                                                                       Jeu 27 fév 1[INFO] Scanning for projects...
@@ -396,7 +381,7 @@ There are plugins for everything !
 
 ## Maven plugins 
 
-Every task of the build process is handled by a plugin, and all Maven core tasks are performed by plugins :
+Every task of the build process is handled by a plugin, even Maven core tasks :
 
  - *maven-clean-plugin*
  - *maven-compiler-plugin*
@@ -411,14 +396,14 @@ Every task of the build process is handled by a plugin, and all Maven core tasks
 
 ## Using Maven plugins 
 
-Most of the core plugins are registered to the build lifecycle by default but you can customize plugin execution in the <build> section of pom.xml
+Most of the core plugins are auto-configured into the build lifecycle but you can customize plugin execution in the *build* section of pom.xml
 
 ```xml
  <build>
     <plugins>
         <plugin>
             <!-- groupId is not necessay for core plugins -->
-            <!-- Be sure to include it for other plugins  -->
+            <!-- but be sure to include it for other plugins  -->
             <artifactId>maven-resources-plugin</artifactId>
             <version>1.0</version>
             <executions>
@@ -447,7 +432,7 @@ The Enforcer plugin provides goals to control certain environmental constraints 
 
 Typical use cases include: 
 
-- Very useful to make a Java library is never used in your project
+- Very useful to ensure a Java library is never used in your project
 - Make sure there are no conflicting versions of libraries
 - A ton of built in rules : **https://maven.apache.org/enforcer/enforcer-rules/index.html**
 - But you can add your own
@@ -497,12 +482,12 @@ Typical use cases include:
 ## Code generation with Maven
 
 - Files that can be generated by an automated process should never be commited.
-- Instead, it's a good idea to use Maven to generate the files on each build, and commit the source specifications instead (xsd, wsdl, ...)
+- Instead, it's a good idea to leverage Maven to generate the files on each build, and commit the source specifications instead (xsd, wsdl, ...)
 - Ensures noone will ever modify the generated files and commit them back, which could lead to silent divergence from the original specs. 
 - Reduces the code base
 - Easier to maintain
 - Typically removes many false positives from code audit tool reports
-- Only one source of truth. Both client and server code are generated from the same informatio,
+- Only one source of truth. Both client and server code are generated from the same information
 
 
 
@@ -527,7 +512,7 @@ Code generation is highly configurable:
 - Generates REST client or server code
 - Targets many languages (Java, Angular, Go, PHP, Node, and many more...)
 - Each language has many variants. Java has Jersey1.x, Jersey2.x, OkHttp, Retrofit1.x, Retrofit2.x, Feign, RestTemplate, RESTEasy, Vertx, Google API Client Library for Java, Rest-assured, Spring 5 Web Client, MicroProfile Rest Client...
-- And each variant has many settings (eg: Date API to use for Java)
+- And each variant has many settings (eg: which date API to use for Java generation)
 - You can override templates or write your own from scratch !
 
 

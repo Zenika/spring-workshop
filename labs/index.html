@@ -20,7 +20,7 @@
 <li>Refactor code in accordance to SOLID principles
 <ul>
 <li>Separate layers : introduce model, data access, business logic</li>
-<li>Emilimate code redundency</li>
+<li>Eliminate code redundency</li>
 <li>Be mindful of the packaging : different layers shouldn't reside in the same java package</li>
 </ul></li>
 </ul>
@@ -47,7 +47,7 @@
 <ul>
 <li><p>Repackage the project to build with Maven</p>
 <ul>
-<li>Use the Maven artifacts for our dependencies: libraries in /lib are named <groupId><strong><artifactId></strong><version></li>
+<li>Use the Maven artifacts for our dependencies: libraries in /lib are named <em>groupId__artifactId__version</em></li>
 <li>JUnit depends on Hamcrest, and is only used for tests. Set up your pom.xml accordingly</li>
 </ul></li>
 <li><p>Set up the project to use modules and submodules modules</p></li>
@@ -117,15 +117,17 @@
 <div class="pb"></div>
 <h1>LAB 7</h1>
 <h2>Spring MVC</h2>
-<p>Let's expose or services to the world !</p>
+<p>Let's expose our services to the world !</p>
 <ul>
-<li>Turn the application into a Web application
+<li><p>Turn the application into a Web application</p>
 <ul>
+<li>Bootstrap the <em>petshop-application</em> to be a war module managed thru Spring MVC</li>
+<li>Create a <em>RestController</em> mapped to the root of your webapp (&quot;/&quot;) to return the String &quot;Hello world&quot;</li>
 <li>Deploy it to a Tomcat server. <em>apache-tomcat-9.0.31.zip</em> is available in <em>resources/LAB7</em></li>
-<li>Create REST controllers to expose ower and pet data (as <em>/owners</em> and <em>/pets</em>)</li>
 <li>Test in browser</li>
 </ul></li>
-<li>Add functionality
+<li><p>Create REST controllers to expose ower and pet data (as <em>/owners</em> and <em>/pets</em>)</p></li>
+<li><p>Add functionality</p>
 <ul>
 <li>Add <em>findOne(int id)</em> to your services</li>
 <li>Expose as <em>/owners/{id}</em> and <em>/pets/{id}</em></li>
@@ -141,6 +143,7 @@
 <ul>
 <li>&quot;/&quot; should be public</li>
 <li>&quot;/owners/...&quot; and &quot;/pets/...&quot; should be secured</li>
+<li>Spring MVC should set up a login page</li>
 </ul></li>
 </ul>
 <div class="pb"></div>

@@ -22,7 +22,7 @@
 
 ## Spring Batch
 
-A framework create robust batch processes, taking care of the boilerplate code for you.
+A framework to create robust batch processes, taking care of the hard boilerplate code for you.
 
 ```xml
         <dependency>
@@ -57,7 +57,7 @@ Spring Batch provides
 
 ## The Spring Batch model: Job and Steps
 
-- A *Job* is the encapulating definition of your batch treatment.
+- A *Job* is the definition of your batch treatment.
 - A Job is composed of one or many Steps
 - A *Step* is the building block of a Job and can do just about anything
   - Processing an input file
@@ -70,8 +70,8 @@ Spring Batch provides
 ## The Spring Batch model: Steps
 
 - Steps can be of two kinds :
- - *Tasklet* based: Steps may embed a an instance of the Tasklet interface 
- - *Chunk-oriented* based: data is read sequentially, creating “chunks” which will then be processed and written back thru a writer
+ - *Tasklet* based: Steps may embed an instance of the Tasklet interface 
+ - *Chunk-oriented* based: data is **read** sequentially, creating “chunks” which will then be **processed** and **written** back thru a writer
 - In both cases, steps are transaction bound
 
 
@@ -82,7 +82,11 @@ Spring Batch provides
 
 ```java
 public interface Tasklet {
-	RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception;
+
+	RepeatStatus execute(StepContribution contribution, 
+                         ChunkContext chunkContext) 
+                 throws Exception;
+
 }
 ```
 
@@ -125,6 +129,8 @@ public interface ItemWriter<T> {
 
 ## Putting it all together: Creating a job
 
+Let's make a simple Batch job composed of a tasklet step followed by a chunk step.
+
 ```java
 @Component
 public class MyTasklet implements Tasklet
@@ -137,22 +143,6 @@ public class MyTasklet implements Tasklet
 
 @Configuration
 public class CustomerReportJobConfig {
-    @Bean
-    public Job customerReportJob(JobBuilderFactory jobBuilder) {
-        return jobBuilder.get("customerReportJob")
-            .start(taskletStep())
-            .next(chunkStep())
-            .build();
-    }
-    ...
-```
-
-
-
-## Putting it all together: Creating a job
-
-```java
-    ...
 
     @Bean
     public Step taskletStep(StepBuilderFactory stepBuilder, 
@@ -161,6 +151,17 @@ public class CustomerReportJobConfig {
             .tasklet(myTasklet)
             .build();
     }
+
+    ...
+
+```
+
+
+
+## Putting it all together: Creating a job
+
+```java
+    ...
 
     @Bean
     public Step chunkStep(StepBuilderFactory stepBuilder, 
@@ -172,6 +173,14 @@ public class CustomerReportJobConfig {
             .reader(reader)
             .processor(processor)
             .writer(writer)
+            .build();
+    }
+
+    @Bean
+    public Job customerReportJob(JobBuilderFactory jobBuilder) {
+        return jobBuilder.get("customerReportJob")
+            .start(taskletStep())
+            .next(chunkStep())
             .build();
     }
 }
@@ -186,7 +195,7 @@ public class CustomerReportJobConfig {
 - Metadata about configured and executed jobs is stored in a *JobRepository*.
 - JobRepository may persist data in memory, in a database or any other medium
 - Jobs may be passed arguments to parameterize their executions
-- It's a good idea to provide a unique argument (eg: execution timestamp) so that the JobLauncher refuses to launch a job that has already executed in the past with the same parameters
+- It's a good idea to provide an argument with an unique value (eg: execution timestamp) because the JobLauncher refuses to launch a job that has already executed in the past with the exact same parameters
 
 
 

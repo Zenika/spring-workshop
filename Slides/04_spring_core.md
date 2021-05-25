@@ -63,7 +63,7 @@ Spring Core :
 
 ## Spring Core: The application context
 
-- The application context is a "bag" which will contain all of the managed components that compose your application
+- The application context is a "bag" which will contain all of the managed components (aka Spring beans) that compose your application
 - An application typically containes one context, but several contexts may cohabit either in a sealed or parent/child relationship
 - Upon startup, a Spring application initializes the context, which means all managed components are discovered, instanciated and dependency injection is performed wherever needed
 
@@ -171,7 +171,7 @@ public class MyConfigTwo {
 
 ## Spring Core: Configuration
 
-- Alternatively if your dependency is in the same configuration, you may call directly the corresponding method
+- Alternatively if your dependency is in the same configuration, you may call the corresponding method directly
 - Spring "magic" will still ensure your bean is a singleton
 
 ```java
@@ -248,9 +248,7 @@ public class StoreService {
 }
 ```
 
-This is the "old" way
-
-- Pros: Flexible. Not all setters need to be required
+- Pros: Flexible, especially for testing
 - Cons: Verbose: needs a bunch of setters
 
 
@@ -290,8 +288,8 @@ public class StoreService {
 
 ## Component scan
 
-- Rather than individually declare every bean in the Spring configuration, it's often easier to use Component Scans
-- Component scanning tells Spring to scan into a package (and its subpackages) and discover automatically and handle any suitable class
+- Rather than declare every bean individually in Spring configurations, it's often easier to use "Component scans"
+- Component scanning tells Spring to inspect a package (and its subpackages) to discover automatically and handle any suitable class
 - Use the *@ComponentScan* annotation on your configuration classes
 
 ```java
@@ -357,8 +355,8 @@ public class CookieService {
 
 ## @PostConstruct and @PreDestroy
 
-- Use *@PostConstruct* and *@PreDestroy* annotated methods to execute code when bean is created or destroyed
-- Preferable to constructors because dependencies are still **null** at that time
+- Use *@PostConstruct* and *@PreDestroy* annotated methods to execute code when a bean is created or destroyed
+- If you're using setter or field injection, always use @PostConstruct rather than add code in the constructor: dependencies are still **null** at that time
 
 ```java
 @Service

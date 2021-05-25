@@ -22,7 +22,7 @@
 
 ## MVC model
 
-MVC: *M*odel-*V*iew-*C*ontroller. This pattern is used to separate application's concerns.
+MVC: *M*odel-*V*iew-*C*ontroller. This pattern is used to ensure a separatation of application concerns (layers) for user interfaces.
 
 - *Model*: Model represents an object or Java POJO carrying data
 - *View*: View represents the visualization of the data that model contains
@@ -40,7 +40,7 @@ MVC: *M*odel-*V*iew-*C*ontroller. This pattern is used to separate application's
 
 ## Spring Web MVC
 
-- Spring Web MVC is the web framework of the Spring ecosystem which implements the MVC pattern
+- Spring Web MVC is the web framework implementation of the MVC pattern in the Spring ecosystem
 - Widely used for fully server-based Java web applications (Struts, JSP, templating engines...)
 - But also ideal for lighter REST based backends !
 
@@ -133,7 +133,7 @@ public class MyController {
 
 ## Using Spring MVC for REST
 
-- By default, Spring MVC is auto configured to work for MVC flows, which means it's expected to redirect to a view rather than return direct data
+- By default, Spring MVC is auto configured to work for MVC flows, which means it's expected to redirect to a view (jsp, template...) rather than return final data
 - Use the *@ResponseBody* annotation to tell Spring that a controller or one of its methods handles the response data directly
 
 ```java
@@ -270,7 +270,6 @@ It's often desirable to return specific HTTP status codes
 
 - *200*: OK (default code)
 - *404*: Not found
-- *403*: Not authorized
 - *500*: Internal error
 - **org.springframework.http.HttpStatus** holds convinient constants for all HTTP codes
 - Use *ResponseEntity* as a return type to specify error codes (and an optional body)
@@ -280,9 +279,10 @@ It's often desirable to return specific HTTP status codes
     public ResponseEntity<Pet> getPet(@PathVariable("id") int id) {
             Pet pet = petService.findById(id);
             if (pet == null) {
-                return ResponseEntity.notFound(); // Utility method for 404
+                // Utility method for 404
+                return ResponseEntity.notFound().build(); 
             }
-            return ResponseEntity.ok(pet);  // 200, pet as the body
+            return ResponseEntity.ok(pet);  // 200, with serialized pet as body
     }
 ```
 
@@ -353,8 +353,8 @@ It's often desirable to return specific HTTP status codes
 
 ## A step beyond: @ControllerAdvice
 
-- Get even more business focused controllers by using *@ControllerAdvice*
-- Creates special technical controllers dédicated to mutualizing *@ExceptionHandler*
+- Code even more business focused controllers by using *@ControllerAdvice*
+- Creates special technical controllers dedicated to mutualizing *@ExceptionHandler*
 - Creates backend-wide error handling
 
 
@@ -377,7 +377,6 @@ public class ErrorHandlingController {
 }
 
 @RestController
-@RequestMapping(value = "/pets")
 public class PetController {
     @GetMapping("/pets/{id}")
     public Pet getPet(@PathVariable("id") int id) {
@@ -396,11 +395,13 @@ public class PetController {
 
 - A handy HTTP client: *RestTemplate*
 - Sometime's it's easier to just use RestTemplate rather than generate a fully fledged API client
-- Maybe you don't have a yaml to generate code with, or maybe it's just that one little call you need
+- Maybe you don't have the OpenAPI specs to generate code with, or maybe it's just that one little call you need
 
 ```java
-RestTemplate restTemplate = new RestTemplate();
 String url = "http://www.myserver.com/pets/1";
+
+RestTemplate restTemplate = new RestTemplate();
+
 // Nice and easy REST get
 Pet pet = restTemplate.getForObject(url, Pet.class);
 

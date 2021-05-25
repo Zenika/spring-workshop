@@ -114,7 +114,7 @@
 - Provides *annotations* to identify test methods
 - Provides *assertions* for testing expected results
 - Provides *test runners* for running tests
-- Well integrated into your UI and your builds (locally or on the continuous integration server)
+- Well integrated into your IDE and your builds (locally or on the continuous integration server)
 
 
 
@@ -148,7 +148,7 @@ JUnit works with a set of *annotations* that govern the execution of your tests
 
 ## JUnit: Test runners
 
-- "Parent" classes that govern how a set of tests is executed and setup the test environment for you
+- "Parent" classes that govern how a set of tests is executed and sets up the test environment for you
 - Specify the runner with the **@RunWith** class annotation
 - If you don't specify any, the basic JUnit runner is selected by default
 - JUnit provides more specialised runners (eg: Spring runner)
@@ -160,22 +160,22 @@ JUnit works with a set of *annotations* that govern the execution of your tests
 ## JUnit: An example
 
 ```java
-class MyFirstTest {
+class CalculatorTest {
 
     private final Calculator calculator;
 
     @BeforeAll
-    void init() {
+    public void init() {
         calculator = new Calculator();
     }
 
     @Test
-    void addition() {
+    public void addTest() {
         assertEquals(2, calculator.add(1, 1));
     }
 
     @Test
-    void substraction() {
+    public void subTest() {
         assertEquals(1, calculator.sub(2, 1));
     }
 }
@@ -215,8 +215,8 @@ assertThat(fellowshipOfTheRing).hasSize(9)
 ## Mockito
 
 - Framework to use "mock" objects
-- Allows you to test objects in isolation to their dependences
-- Test failing means the tested class fails ! Not one of its dependences
+- Allows you to test objects in isolation from their dependences
+- A test failing means the tested class is where thr problem resides ! Not in one of its dependences
 - Declare mock objets with **@Mock**
 - Inject them into the tested instance with **@InjectMocks**
 - Program your mocks behavior with the Mockito fluent API: **when(...).then(...)**
