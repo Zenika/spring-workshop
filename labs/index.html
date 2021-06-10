@@ -61,51 +61,6 @@
 </code></pre>
 <div class="pb"></div>
 <h1>LAB 5</h1>
-<h2>Open API</h2>
-<p>Let's perform code generation with Maven</p>
-<ul>
-<li>Create a new Maven submodule: <em>petshop-api</em></li>
-<li>Use <em>petstore.yaml</em> from <em>resources/LAB5</em> to generate a server-side REST API
-<ul>
-<li>Use generation settings :</li>
-</ul></li>
-</ul>
-<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">generatorName</span>&gt;</span>spring<span class="hljs-tag">&lt;/<span class="hljs-name">generatorName</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">library</span>&gt;</span>spring-mvc<span class="hljs-tag">&lt;/<span class="hljs-name">library</span>&gt;</span>
-</code></pre>
-<ul>
-<li>You will need the following dependencies to compile the generated code :</li>
-</ul>
-<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.swagger<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>swagger-annotations<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.6.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.validation<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>validation-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.1.Final<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-webmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.2.3.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.openapitools<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jackson-databind-nullable<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.2.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>javax.servlet-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.0.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>    
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span>
-</code></pre>
-<div class="pb"></div>
-<h1>LAB 6</h1>
 <h2>Spring Core</h2>
 <p>Let's turn our petshop application into a Spring application</p>
 <ul>
@@ -115,7 +70,7 @@
 <li>Put main logic in a @Component, retrieve it from context and execute it</li>
 </ul>
 <div class="pb"></div>
-<h1>LAB 7</h1>
+<h1>LAB 6</h1>
 <h2>Spring MVC</h2>
 <p>Let's expose our services to the world !</p>
 <ul>
@@ -135,7 +90,7 @@
 </ul></li>
 </ul>
 <div class="pb"></div>
-<h1>LAB 8</h1>
+<h1>LAB 7</h1>
 <h2>Spring Security</h2>
 <p>Let's secure our application with Spring Security</p>
 <ul>
@@ -147,7 +102,7 @@
 </ul></li>
 </ul>
 <div class="pb"></div>
-<h1>LAB 9</h1>
+<h1>LAB 8</h1>
 <h2>Spring Data JPA</h2>
 <p>Let's add real persistence to the Pet Shop !</p>
 <ul>
@@ -210,7 +165,7 @@
 </ul></li>
 </ul>
 <div class="pb"></div>
-<h1>LAB 10</h1>
+<h1>LAB 9</h1>
 <h2>Spring Batch</h2>
 <p>Let's create a Spring batch process</p>
 <ul>
@@ -228,7 +183,7 @@
 <li>Check the result thru your <em>/pets</em> REST endpoint</li>
 </ul>
 <div class="pb"></div>
-<h1>LAB 11</h1>
+<h1>LAB 10</h1>
 <h2>Spring Boot</h2>
 <p>The final test !</p>
 <p>Convert your application into a Spring Boot app.</p>

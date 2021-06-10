@@ -2,15 +2,26 @@
 
 # LAB 10
 
-## Spring Batch
+## Spring Boot
 
-Let's create a Spring batch process
+The final test !
 
-- Create a new child module named *petshop-batch*
-- Create a Spring Batch which does the following:
-  - Read file *resources/LAB10/pets.csv* and produce a String[]
-    - Use *org.springframework.batch.item.file.FlatFileItemReader*
-    - Be sure to set its *Resource* and *LineMapper*
-  - Use an *ItemProcessor* to turn each record into a *PetEntity*
-  - Write an *ItemWriter* that leverages *PetDao* to save the records into the database
-- Check the result thru your */pets* REST endpoint
+Convert your application into a Spring Boot app.
+
+- Use starters 
+  - *spring-boot-starter-data-jpa*
+  - *spring-boot-starter-web*
+  - *spring-boot-starter-security*
+
+- You will need to use the following Spring Boot configuration to interface with a H2 datasource 
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:h2:c:/temp/h2
+    username: 'sa'
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate.ddl-auto: none
+```
