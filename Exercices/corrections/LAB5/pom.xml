@@ -9,7 +9,6 @@
         <module>petshop-model</module>
         <module>petshop-persistence</module>
         <module>petshop-services</module>
-        <module>petshop-api</module>
         <module>petshop-application</module>
     </modules>
 
@@ -17,6 +16,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>5.2.4.RELEASE</spring.version>
     </properties>
 
     <dependencyManagement>
@@ -39,11 +39,6 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>petshop-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>petshop-application</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -59,6 +54,11 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.9</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
             </dependency>
 
             <!--test libraries-->

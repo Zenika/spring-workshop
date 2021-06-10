@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
-@EnableWebSecurity
 public class PetshopSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override

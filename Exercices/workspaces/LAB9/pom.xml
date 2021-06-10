@@ -9,7 +9,6 @@
         <module>petshop-model</module>
         <module>petshop-persistence</module>
         <module>petshop-services</module>
-        <module>petshop-api</module>
         <module>petshop-application</module>
     </modules>
 
@@ -37,11 +36,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>petshop-services</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>petshop-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -83,6 +77,11 @@
                 <version>${spring-security.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-jpa</artifactId>
+                <version>2.2.5.RELEASE</version>
+            </dependency>
+            <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
                 <version>4.0.1</version>
@@ -91,6 +90,22 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>2.10.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>5.4.12.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>javax.persistence-api</artifactId>
+                <version>2.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>1.4.200</version>
             </dependency>
 
             <!--test libraries-->

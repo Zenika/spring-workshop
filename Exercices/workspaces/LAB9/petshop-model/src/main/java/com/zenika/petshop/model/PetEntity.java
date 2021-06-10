@@ -1,8 +1,13 @@
 package com.zenika.petshop.model;
 
+import javax.persistence.Id;
+
+@javax.persistence.Entity
 public class PetEntity implements Entity {
 
+    @Id
     private int id;
+
     private String name;
     private String race;
 

@@ -3,11 +3,22 @@ package com.zenika.petshop.persistence;
 import com.zenika.petshop.exceptions.WrongDataException;
 import com.zenika.petshop.model.OwnerEntity;
 import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class OwnerDao extends AbstractEntityDao<OwnerEntity> {
 
-    public OwnerDao(String dataFile) {
-        super(dataFile);
+    @Value("${data.owners}")
+    private String dataFilename;
+
+    @Override
+    protected String getDataFilename() {
+        return dataFilename;
+    }
+
+    void setDataFilename(String dataFilename) {
+        this.dataFilename = dataFilename;
     }
 
     @Override

@@ -2,11 +2,14 @@ package com.zenika.petshop.service;
 
 import com.zenika.petshop.model.OwnerEntity;
 import com.zenika.petshop.persistence.EntityDao;
-import com.zenika.petshop.persistence.OwnerDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OwnerService extends AbstractEntityService<OwnerEntity> {
 
-    private final OwnerDao dao = new OwnerDao("owners.csv");
+    @Autowired
+    private EntityDao<OwnerEntity> dao;
 
     @Override
     protected EntityDao<OwnerEntity> getDao() {

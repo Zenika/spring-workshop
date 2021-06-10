@@ -612,8 +612,4 @@ components:
 
 
 
-<!-- .slide: class="page-tp5" -->
-
-
-
 <!-- .slide: class="page-questions" -->

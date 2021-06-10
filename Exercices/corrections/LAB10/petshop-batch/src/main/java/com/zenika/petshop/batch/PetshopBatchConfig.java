@@ -3,7 +3,6 @@ package com.zenika.petshop.batch;
 import com.zenika.petshop.batch.components.PetProcessor;
 import com.zenika.petshop.batch.components.PetReader;
 import com.zenika.petshop.batch.components.PetWriter;
-import com.zenika.petshop.PetshopDataConfig;
 import com.zenika.petshop.model.PetEntity;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;

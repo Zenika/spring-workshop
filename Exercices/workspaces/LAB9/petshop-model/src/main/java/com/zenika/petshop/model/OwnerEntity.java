@@ -1,8 +1,13 @@
 package com.zenika.petshop.model;
 
+import javax.persistence.Id;
+
+@javax.persistence.Entity
 public class OwnerEntity implements Entity {
 
+    @Id
     private int id;
+
     private String name;
 
     @Override

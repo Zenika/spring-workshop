@@ -16,8 +16,7 @@ public class OwnerDaoTest {
 
     @Test
     public void readAll_ok() {
-        OwnerDao dao = new OwnerDao(ROOT_DIR + "owners-testdata-ok.csv");
-        Map<Integer, OwnerEntity> data = dao.readAll();
+        Map<Integer, OwnerEntity> data = runDao("owners-testdata-ok.csv");
         assertThat(data).isNotNull();
         assertThat(data).hasSize(5);
         OwnerEntity owner = data.get(1);
@@ -29,7 +28,7 @@ public class OwnerDaoTest {
     @Test
     public void readAll_missing_file() {
         try {
-            new OwnerDao(ROOT_DIR + "owners-MISSINGFILE.csv").readAll();
+            runDao("owners-MISSINGFILE.csv");
         } catch (IllegalStateException e) {
             assertThat(e).hasCauseInstanceOf(FileNotFoundException.class);
         }
@@ -37,16 +36,23 @@ public class OwnerDaoTest {
 
     @Test(expected = WrongDataException.class)
     public void readAll_wrong_separator() {
-        new OwnerDao(ROOT_DIR + "owners-testdata-ko-separator.csv").readAll();
+        runDao("owners-testdata-ko-separator.csv");
     }
 
     @Test(expected = WrongDataException.class)
     public void readAll_missingdata() {
-        new OwnerDao(ROOT_DIR + "owners-testdata-ko-missingdata.csv").readAll();
+        runDao("owners-testdata-ko-missingdata.csv");
     }
 
     @Test(expected = WrongDataException.class)
     public void readAll_wrong_format() {
-        new OwnerDao(ROOT_DIR + "owners-testdata-ko-format.csv").readAll();
+        runDao("owners-testdata-ko-format.csv");
     }
+
+    private Map<Integer, OwnerEntity> runDao(String file) {
+        OwnerDao dao = new OwnerDao();
+        dao.setDataFilename(ROOT_DIR + file);
+        return dao.readAll();
+    }
+
 }

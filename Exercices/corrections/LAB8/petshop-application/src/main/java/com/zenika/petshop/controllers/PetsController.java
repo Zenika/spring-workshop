@@ -1,6 +1,5 @@
 package com.zenika.petshop.controllers;
 
-import com.zenika.petshop.model.OwnerEntity;
 import com.zenika.petshop.model.PetEntity;
 import com.zenika.petshop.service.EntityService;
 import org.springframework.beans.factory.annotation.Autowired;

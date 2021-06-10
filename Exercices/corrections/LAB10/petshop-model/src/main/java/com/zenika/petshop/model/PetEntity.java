@@ -1,8 +1,10 @@
 package com.zenika.petshop.model;
 
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @javax.persistence.Entity
+@Table(name = "petentity", schema = "public")
 public class PetEntity implements Entity {
 
     @Id

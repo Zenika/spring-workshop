@@ -2,11 +2,14 @@ package com.zenika.petshop.service;
 
 import com.zenika.petshop.model.PetEntity;
 import com.zenika.petshop.persistence.EntityDao;
-import com.zenika.petshop.persistence.PetDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PetService extends AbstractEntityService<PetEntity> {
 
-    private PetDao dao = new PetDao("pets.csv");
+    @Autowired
+    private EntityDao<PetEntity> dao;
 
     @Override
     protected EntityDao<PetEntity> getDao() {

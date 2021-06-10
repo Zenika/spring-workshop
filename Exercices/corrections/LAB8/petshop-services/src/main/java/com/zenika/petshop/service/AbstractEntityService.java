@@ -3,7 +3,6 @@ package com.zenika.petshop.service;
 import com.zenika.petshop.model.Entity;
 import com.zenika.petshop.persistence.EntityDao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 abstract class AbstractEntityService<T extends Entity> implements EntityService<T> {
@@ -12,12 +11,12 @@ abstract class AbstractEntityService<T extends Entity> implements EntityService<
 
     @Override
     public List<T> getAll() {
-        return new ArrayList<>(getDao().readAll().values());
+        return getDao().findAll();
     }
 
     @Override
     public T findOne(int id) {
-        return getDao().readAll().get(id);
+        return getDao().findById(id).orElse(null);
     }
 
     @Override

@@ -4,6 +4,7 @@ package com.zenika.petshop.persistence;
 import com.zenika.petshop.exceptions.WrongDataException;
 import com.zenika.petshop.model.OwnerEntity;
 import org.junit.Test;
+import org.springframework.core.io.FileSystemResource;
 
 import java.io.FileNotFoundException;
 import java.util.Map;
@@ -51,7 +52,7 @@ public class OwnerDaoTest {
 
     private Map<Integer, OwnerEntity> runDao(String file) {
         OwnerDao dao = new OwnerDao();
-        dao.setDataFilename(ROOT_DIR + file);
+        dao.setData(new FileSystemResource(ROOT_DIR + file));
         return dao.readAll();
     }
 

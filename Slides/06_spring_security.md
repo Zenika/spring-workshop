@@ -196,7 +196,7 @@ public String sell(Pet pet) {
 
 
 
-<!-- .slide: class="page-tp8" -->
+<!-- .slide: class="page-tp7" -->
 
 
 
