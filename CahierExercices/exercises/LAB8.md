@@ -12,6 +12,11 @@ Let's add real persistence to the Pet Shop !
 
 ```xml
   <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-jpa</artifactId>
+      <version>2.2.5.RELEASE</version>
+  </dependency>
+  <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
       <version>5.4.12.Final</version>

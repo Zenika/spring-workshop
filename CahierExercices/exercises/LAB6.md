@@ -19,3 +19,16 @@ Let's expose our services to the world !
   - Expose as */owners/{id}* and */pets/{id}*
   - Return 404 if not found
   
+- In addition of Spring MVC, you will need the following dependencies:
+```xml
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>4.0.1</version>
+</dependency>
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.10.2</version>
+</dependency>  
+```            

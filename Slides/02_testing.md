@@ -120,16 +120,23 @@
 
 ## JUnit: Annotations
 
-JUnit works with a set of *annotations* that govern the execution of your tests
+JUnit works with a set of *annotations* that govern the execution of your tests.
+Some annotations differ according to the Junit version. eg: @BeforeEach in Junit5  was @Before in Junit4.
 
 - **@Test**: This method is a test method.
-- **@BeforeEach**: This method should be executed before each @Test
-- **@AfterEach**: This method should be executed after each @Test
-- **@BeforeAll**: This method should be executed before all @Test
-- **@AfterAll**: This method should be executed after all @Test
-- **@Disabled**: Used to disable a test class or test method. Use wisely !
+- **@BeforeEach (@Before)** : This method should be executed before each test
+- **@AfterEach (@After)**: This method should be executed after each test
+- **@BeforeAll (@BeforeClass)**: This method should be executed before all tests
+- **@AfterAll (@AfterClass)**: This method should be executed after all tests
+- **@Disabled (@Ignore)**: Used to disable a test class or test method. Use wisely !
 
-- Many more ! **@ParameterizedTest, @RepeatedTest, @TestFactory, @TestTemplate, @TestMethodOrder, @TestInstance, @DisplayName, @DisplayNameGeneration, @Nested, @Tag, @Timeout, @ExtendWith, @RegisterExtension, @TempDir**
+
+
+## JUnit: Annotations
+
+Many more ! 
+
+**@ParameterizedTest, @RepeatedTest, @TestFactory, @TestTemplate, @TestMethodOrder, @TestInstance, @DisplayName, @DisplayNameGeneration, @Nested, @Tag, @Timeout, @ExtendWith, @RegisterExtension, @TempDir**
 
 
 

@@ -357,6 +357,18 @@ public class CookieService {
 
 - Use *@PostConstruct* and *@PreDestroy* annotated methods to execute code when a bean is created or destroyed
 - If you're using setter or field injection, always use @PostConstruct rather than add code in the constructor: dependencies are still **null** at that time
+- *@PostConstruct* and *@PreDestroy* are part of the JDK up to Java 8. If using Java 9 or newer, you need to specify an extra dependency:
+```
+<dependency>
+    <groupId>javax.annotation</groupId>
+    <artifactId>javax.annotation-api</artifactId>
+    <version>1.3.2</version>
+</dependency> 
+```
+
+
+
+## @PostConstruct and @PreDestroy
 
 ```java
 @Service

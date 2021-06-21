@@ -177,10 +177,12 @@ public class CustomerReportJobConfig {
     }
 
     @Bean
-    public Job customerReportJob(JobBuilderFactory jobBuilder) {
+    public Job customerReportJob(JobBuilderFactory jobBuilder,
+                                   Step chunkStep,
+                                   Step taskletStep) {
         return jobBuilder.get("customerReportJob")
-            .start(taskletStep())
-            .next(chunkStep())
+            .start(taskletStep)
+            .next(chunkStep)
             .build();
     }
 }
