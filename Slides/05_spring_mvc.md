@@ -48,7 +48,7 @@ MVC: *M*odel-*V*iew-*C*ontroller. This pattern is used to ensure a separatation 
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-webmvc</artifactId>
-<dependency>
+</dependency>
 ```
 
 
@@ -180,6 +180,7 @@ public class PetController {
 
 ```java
 @RestController
+@RequestMapping(value = "/pets")
 public class PetController {
     
     @Autowired
@@ -255,7 +256,7 @@ public class PetController {
 
     // log user agent
     @GetMapping
-    public Pet getAllPets(@RequestHeader("User-Agent") String userAgent) {
+    public Pets getAllPets(@RequestHeader("User-Agent") String userAgent) {
         log.info("User agent: {}", userAgent);
         return petService.findAll();
     }
@@ -328,6 +329,9 @@ It's often desirable to return specific HTTP status codes
 ## ExceptionHandler: An example
 
 ```java
+@RestController
+public class PetController {
+    
     @GetMapping("/pets/{id}")
     public Pet getPet(@PathVariable("id") int id) {
         Pet pet = petService.findById(id);
@@ -347,6 +351,7 @@ It's often desirable to return specific HTTP status codes
     public ResponseEntity notFoundExceptionHandler() {
         return ResponseEntity.notFound().build();
     }
+}
 ```
 
 

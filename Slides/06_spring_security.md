@@ -172,13 +172,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-## Securing services
+## Securing services (1/2)
 
 - Securing HTTP endpoints may not be sufficient in some cases
-- Spring Security provides with various annotations to secure code
+- Spring Security provides with various annotations to secure code more precisely
   - *@Secured*
 ```java
-@RolesAllowed("ROLE_SHOP_OWNER")    // Be sure to add the "ROLE_" prefix !
+@Secured("ROLE_SHOP_OWNER")    // Be sure to add the "ROLE_" prefix !
 public String sell(Pet pet) {
     //...
 }
@@ -193,6 +193,26 @@ public String sell(Pet pet) {
 ```
 
 - These annotations can be located on a method or an entire class
+
+
+
+## Securing services (2/2)
+
+When using security annotations, you must make sure to enable them in your security configuration with the *@EnableGlobalMethodSecurity* annotation:
+
+```java
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(
+  securedEnabled = true, 
+  jsr250Enabled = true, 
+  prePostEnabled = true)
+public class WebSecurityConfig { 
+  ...
+}
+```
+
+
 
 
 
