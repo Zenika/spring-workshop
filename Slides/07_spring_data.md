@@ -190,32 +190,6 @@ public interface PersonRepository extends Repository<User, Long> {
 
 
 
-## Composite repositories
-
-- Sometimes queries get to complicated and a method signature is not enough
-- Spring Data allows you to supplement your Repositories with custom code
-  - Create a side interface defining your custom behaviour
-  - Have your repository extend this interface
-  - Implement it
-  - Spring Data will embbed your implementation into the repository
-
-```java
-public interface PetsCustomBehavior {
-    public List<Pet> findAllSomething();
-}
-
-@Repository
-public class PetsCustomBehaviorImpl implements PetsCustomBehavior {
-    public List<Pet> findAllSomething() { ... }
-}
-
-@Repository
-public interface PetDao extends CrudRepository<Pet, Integer>, PetsCustomBehavior {
-}
-```
-
-
-
 ## Spring Data JPA
 
 - Spring Data implementation for JPA
@@ -259,7 +233,7 @@ Your entities need to be annotated with JPA annotations
 ```java
 @Entity
 @Table(name="users")
-public  class Person implements Serializable {
+public  class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -267,14 +241,13 @@ public  class Person implements Serializable {
     @Column(name="family_name", length=50)
     private String name;
 
-    private String fistName;
+    private String firstName;
 
     private int age;
 
-    @Enumerated(EnumType.ORDINAL)
-    private Civility civility;
+    @Enumerated(EnumType.STRING) // persists as a String
+    private CivilityEnum civility;
 
-    @Temporal(TemporalType.DATE)
     private Date birthday;
 
     @Lob
@@ -286,14 +259,41 @@ public  class Person implements Serializable {
 
 ## JPA entities : 0-1 relationships
 
-With JPA you can easily define *one-to-one* relationships using annotations
+With JPA you can easily define *zero-to-one* (or *one-to-one*) relationships using annotations
+
+<figure>
+    <img src="ressources/07_spring_data/jpa-relation__0-1.jpg" alt="0-1" />
+</figure>
+
+
+
+
+## JPA entities : 0-1 relationships
+
+Use the *@OneToOne* annotation to specify 0-1 relationships
 
 ```java
 @Entity
+public class Tatoo {
+   @Id
+   private Long id;
+   ...
+}
+
+@Entity
 public class Pet {
+   @Id
+   private Long id;
 
    @OneToOne
-   private Tatoo tatoo;
+   private Tatoo tatoo; // will map to tatoo_id
+   ...
+
+   // This method will actually be enhanced by Spring Data to fetch the 
+   // Tatoo in the database and return it
+   public Tatoo getTatoo() {
+       return tatoo;
+   }
 }
 ```
 
@@ -303,9 +303,21 @@ public class Pet {
 
 With JPA you can easily define *many-to-one* and/or *one-to-many* relationships using annotations
 
+<figure>
+    <img src="ressources/07_spring_data/jpa-relation__0-N.jpg" alt="0-N" />
+</figure>
+
+
+
+
+## JPA entities : 0-N relationships
+
+Use the *@ManyToOne* and *@OneToMany* annotations to specify 0-N relationships
+
 ```java
 @Entity
 public class Pet {
+    ...
 
    @ManyToOne
    private Person owner;
@@ -313,9 +325,16 @@ public class Pet {
 
 @Entity
 public class Person {
+    ...
     
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner") // name of the inverse relationship
     private List<Pet> pets;
+
+   // This method will actually be enhanced by Spring Data to fetch the 
+   // Pets in the database and return them
+   public List<Pet> getPets() {
+       return pets;
+   }
 }
 ```
 
@@ -323,23 +342,39 @@ public class Person {
 
 ## JPA entities : N-N relationships
 
-- With JPA you can define *many-to-many* relationships using annotations.
-- Many-to-many relationships are a little more complicated because they need an extra table to store relationships
+- With JPA you can easily define *many-to-many* relationships using annotations
+- Many-to-many relationships are a little more complicated because they need an extra table to store the relationship
 - Fortunately, JPA also handles that for you
+
+<figure>
+    <img src="ressources/07_spring_data/jpa-relation__N-N.jpg" alt="N-N" />
+</figure>
+
+
+
+
+## JPA entities : N-N relationships
+
+Use the *ManyToMany* annotation to specify N-N relationships
 
 ```java
 @Entity
 public class Student {
     @ManyToMany
     @JoinTable(
-    name = "student_courses", 
-    joinColumns = @JoinColumn(name = "student_id"), 
-    inverseJoinColumns = @JoinColumn(name = "course_id"))
+        // name for the join table
+        name = "student_courses", 
+        // join column for this entity's side
+        joinColumns = @JoinColumn(name = "student_id"),   
+        // join column for the other entity's side  
+        inverseJoinColumns = @JoinColumn(name = "course_id")) 
     private Set<Course> courses;
 }
 
 @Entity
 public class Course {
+    // No need to repeat everything, 
+    // just specify the inverse relationship from the other entity
     @ManyToMany(mappedBy = "courses")
     private Set<Student> students;
 }
