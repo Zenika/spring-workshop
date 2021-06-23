@@ -7,6 +7,7 @@ import com.zenika.petshop.PetshopDataConfig;
 import com.zenika.petshop.model.PetEntity;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.JobLauncher;
@@ -28,6 +29,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 @ComponentScan
 @Import(PetshopDataConfig.class)
+@EnableBatchProcessing
 public class PetshopBatchConfig {
 
     @Bean
@@ -45,16 +47,6 @@ public class PetshopBatchConfig {
                 new MapJobExecutionDao(),
                 new MapStepExecutionDao(),
                 new MapExecutionContextDao());
-    }
-
-    @Bean
-    public JobBuilderFactory jobBuilderFactory(JobRepository jobRepository) {
-        return new JobBuilderFactory(jobRepository);
-    }
-
-    @Bean
-    public StepBuilderFactory stepBuilderFactory(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-        return new StepBuilderFactory(jobRepository, transactionManager);
     }
 
     @Bean
