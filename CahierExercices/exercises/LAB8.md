@@ -8,6 +8,9 @@ Let's add real persistence to the Pet Shop !
 
 - Configure Spring Data Jpa
   - We'll use a simple H2 database, available in *resources/LAB9*
+
+<img src="ressources/lab_model.png" width="40%" height="50%">
+
   - You'll need the following dependencies
 
 ```xml
