@@ -127,6 +127,21 @@ public interface ItemWriter<T> {
 
 
 
+## @EnableBatchProcessing
+
+Just like many of Spring's sub-frameworks, Spring Batch provides with a specific annotation you need to use in order to kick-start it : *@EnableBatchProcessing*
+
+```java
+@Configuration
+@EnableBatchProcessing
+public class MyBatchConfig {
+    ...
+}
+```
+
+
+
+
 ## Putting it all together: Creating a job
 
 Let's make a simple Batch job composed of a tasklet step followed by a chunk step.
@@ -142,6 +157,7 @@ public class MyTasklet implements Tasklet
 }
 
 @Configuration
+@EnableBatchProcessing
 public class CustomerReportJobConfig {
 
     @Bean
