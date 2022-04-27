@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "grunt": "^0.4.5",
+    "grunt": "^1.5.2",
     "gulp": "^3.9.0",
     "zenika-formation-framework": "^3.3.1"
   },
